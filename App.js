@@ -8,9 +8,10 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import {connect} from "react-redux";
 import {addNumber, removeNumber} from "./src/store/actions/index";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -38,6 +39,9 @@ class App extends Component {
                 <Text>{this.props.ctr}</Text>
                 <Button title="addNumber" onPress={() => this.onAddHandler(2)} />
                 <Button title="removeNumber" onPress={() => this.onRemoveHandler(2)} />
+                <TouchableOpacity>
+                    <Icon size={30} name="ios-trash" color="green"/>
+                </TouchableOpacity>
             </View>
         );
     }
