@@ -6,6 +6,12 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import {createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 
+/*const FeedStack = createStackNavigator({
+    Profile: {
+        screen: feed,
+    }
+});*/
+
 const NavStack = createBottomTabNavigator({
     Feed: {
         screen: feed,

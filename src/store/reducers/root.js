@@ -1,20 +1,29 @@
-import {ADD_NUMBER, REMOVE_NUMBER} from "../actions/actionTypes";
+import {ADD_NUMBER, REMOVE_NUMBER, UPDATE_RECIPES} from "../actions/actionTypes";
 
 const initialState = {
-    counter: 1
+    counter: 0,
+    recipes: [],
+    recipesLoaded: false
+
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case UPDATE_RECIPES: {
+            console.log("xx");
+            return {
+                ...state,
+                recipes: action.recipes,
+                recipesLoaded: true
+            }
+        }
         case ADD_NUMBER: {
-            console.log(action.number);
             return {
                 ...state,
                 counter: state.counter + action.number
             }
         }
         case REMOVE_NUMBER: {
-            console.log(action.number);
             return {
                 ...state,
                 counter: state.counter - action.number
