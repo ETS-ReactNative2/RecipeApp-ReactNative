@@ -1,4 +1,5 @@
 import React from "react";
+import RecipeDetailsComponent from "../../components/ReceptDetails/RecipeDetails"
 import {connect} from "react-redux";
 
 class RecipeDetails extends React.Component {
@@ -15,6 +16,7 @@ class RecipeDetails extends React.Component {
 
     render() {
         return (
+            <RecipeDetailsComponent/>
         )
     }
 }

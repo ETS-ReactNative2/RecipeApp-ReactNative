@@ -1,10 +1,12 @@
 import React, {Component} from "react";
-import {StyleSheet, View,} from "react-native";
+import {StyleSheet, View, Text} from "react-native";
 import {connect} from "react-redux";
-import {updateRecipes} from "../../store/actions/index";
-import FeedTileFlatList from "../../components/FeedTileFlatList/FeedTileFlatList"
+import {updateRecipes, selectRecipe} from "../../store/actions/index";
+import FeedTileFlatList from "../../components/FeedTileFlatList/FeedTileFlatList";
+import ReceptDetails from "../../components/ReceptDetails/RecipeDetails";
 import axiosInstance from "../../axios";
-import testData from "../../testData"
+import testData from "../../testData";
+import testRecept from "../../testRecept";
 
 class Feed extends Component {
 
@@ -24,13 +26,28 @@ class Feed extends Component {
         this.props.onUpdateRecipes(response);
     };
 
+    onTileClickHandler = (event) => {
+        this.props.onSelectRecipe(event.target);
+        this.props.navigation.navigate('RecipeDetails')
+    };
+
+
     render() {
+        let feedTiles;
+
+        if (this.props.recipeSelected === "x") {
+            feedTiles = <ReceptDetails recipeDetails={testRecept}/>
+        }
+        else {
+            feedTiles = <FeedTileFlatList
+                onClick={this.onTileClickHandler}
+                recipe={this.props.recipes}
+            />
+        }
         return (
             <View>
-                <FeedTileFlatList recipe={this.props.recipes}/>
+                {feedTiles}
             </View>
-
-
         )
     }
 
@@ -57,15 +74,16 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-        ctr: state.values.counter,
         recipes: state.values.recipes,
-        recipesLoaded: state.values.recipesLoaded
+        recipesLoaded: state.values.recipesLoaded,
+        recipeSelected: state.values.recipeSelected
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onUpdateRecipes: (data) => dispatch(updateRecipes(data)),
+        onSelectRecipe: (recipe) => dispatch(selectRecipe(recipe))
     };
 };
 

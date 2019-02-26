@@ -1,47 +1,53 @@
 import React from "react";
-import {StyleSheet, View, Text, ImageBackground} from "react-native";
-
+import {StyleSheet, View, Text, ImageBackground, TouchableOpacity} from "react-native";
+import Tags from "../../../components/Tags/Tags"
 const FeedTile = (props) => {
     return (
-        <View style={styles.container}>
-            <ImageBackground
-                source={{uri: props.image}}
-                style={{
-                    width: '100%',
-                    height: '100%'
-                }}>
-                <Text style={styles.text}>{props.title}</Text>
-            </ImageBackground>
-        </View>
+        <TouchableOpacity onPress={props.onClick}>
+            <View style={styles.container}>
+                <ImageBackground
+                    source={{uri: props.image}}
+                    style={{
+                        width: '100%',
+                        height: '100%'
+                    }}>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.titleText}>{props.title}</Text>
+                    </View>
+                    <Tags tags={["pork", "pork again"]}/>
+                </ImageBackground>
+            </View>
+        </TouchableOpacity>
     )
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        width: "100%",
-        height: 100,
-        marginTop: 0,
-        //backgroundColor: 'steelblue',
-        minHeight: "20%",
-        overflow: 'hidden'
-    },
-    image: {},
-    text: {
-        paddingLeft:15,
-        paddingTop:15,
-        fontSize: 25,
-        letterSpacing: 2,
-        color: "#000000",
-        fontWeight: "400",
-        textShadowColor: 'rgba(255, 255, 255, 0.75)',
-        textShadowOffset: {width: 1, height: 1},
-        textShadowRadius: 10
-
-    },
-    underText: {}
-});
+        container: {
+            borderRadius: 5,
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            width: "95%",
+            height: 200,
+            marginTop: 5,
+            marginLeft: "2.5%",
+            minHeight: "20%",
+            overflow: 'hidden'
+        },
+        titleContainer: {
+            top: 10,
+            position: "absolute",
+            backgroundColor: 'rgba(255,255,255,0.8)',
+        },
+        titleText: {
+            paddingLeft: 15,
+            paddingTop: 0,
+            paddingRight: 15,
+            fontSize: 20,
+            color: "#000000",
+            fontWeight: "400",
+        },
+    })
+;
 
 export default FeedTile;
