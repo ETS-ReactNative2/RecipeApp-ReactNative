@@ -5,7 +5,6 @@ import {updateRecipes, selectRecipe} from "../../store/actions/index";
 import FeedTileFlatList from "../../components/FeedTileFlatList/FeedTileFlatList";
 import ReceptDetails from "../../components/ReceptDetails/RecipeDetails";
 import axiosInstance from "../../axios";
-import testData from "../../testData";
 import testRecept from "../../testRecept";
 
 class Feed extends Component {
@@ -15,11 +14,13 @@ class Feed extends Component {
     }
 
     componentDidMount() {
-
-        //axiosInstance.get("/recipes/search").then(response => {
-        //      this.onUpdateHandler(response.data.results);
-        //});
-        this.onUpdateHandler(testData);
+        axiosInstance.get("/recipes")
+            .then(response => {
+                this.onUpdateHandler(response.data);
+            })
+            .catch(error => {
+                console.log(error)
+            });
     }
 
     onUpdateHandler = (response) => {
@@ -35,15 +36,12 @@ class Feed extends Component {
     render() {
         let feedTiles;
 
-        if (this.props.recipeSelected === "x") {
-            feedTiles = <ReceptDetails recipeDetails={testRecept}/>
-        }
-        else {
-            feedTiles = <FeedTileFlatList
-                onClick={this.onTileClickHandler}
-                recipe={this.props.recipes}
-            />
-        }
+
+        feedTiles = <FeedTileFlatList
+            onClick={this.onTileClickHandler}
+            recipe={this.props.recipes}
+        />;
+
         return (
             <View>
                 {feedTiles}

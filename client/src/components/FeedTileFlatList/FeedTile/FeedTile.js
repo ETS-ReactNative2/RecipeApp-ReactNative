@@ -14,7 +14,7 @@ const FeedTile = (props) => {
                     <View style={styles.titleContainer}>
                         <Text style={styles.titleText}>{props.title}</Text>
                     </View>
-                    <Tags tags={["pork", "pork again"]}/>
+                    <Tags tags={props.tags}/>
                 </ImageBackground>
             </View>
         </TouchableOpacity>
