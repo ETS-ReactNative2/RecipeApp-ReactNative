@@ -7,8 +7,6 @@
     "servings": 7,
     "image": "http://lorempixel.com/640/480/food",
     "imageUrls": [
-      "http://lorempixel.com/640/480/food",
-      "http://lorempixel.com/640/480/food",
       "http://lorempixel.com/640/480/food"
     ],
     "categories": [
@@ -70,9 +68,9 @@ function generateRecipes () {
   for (let id = 0; id < 500; id++) {
     
     let title = faker.lorem.words();
-    let readyInMinutes = randomNumber(120);
+    let readyInMinutes = Math.ceil(randomNumber(120)/5)*5; 
     let servings = randomNumber(16);
-    let image = faker.image.food() + '?rnd=' + randomNumber(1000);;
+    let image = faker.image.food() + '?rnd=' + randomNumber(1000);
     let categories = (defaultCategories.sort(() => 0.5 - Math.random())).slice(0, randomNumber(4));
     let ingredients = generateIngredients();
     let text = faker.lorem.paragraphs();
