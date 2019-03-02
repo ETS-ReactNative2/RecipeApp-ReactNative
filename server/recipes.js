@@ -72,8 +72,8 @@ function generateRecipes () {
     let title = faker.lorem.words();
     let readyInMinutes = randomNumber(120);
     let servings = randomNumber(16);
-    let image = faker.image.food();
-    let categories = (defaultCategories.sort(() => 0.5 - Math.random())).slice(0, randomNumber(6));
+    let image = faker.image.food() + '?rnd=' + randomNumber(1000);;
+    let categories = (defaultCategories.sort(() => 0.5 - Math.random())).slice(0, randomNumber(4));
     let ingredients = generateIngredients();
     let text = faker.lorem.paragraphs();
     recipes.push({
@@ -83,7 +83,7 @@ function generateRecipes () {
       "servings": servings,
       "image": image,
       "imageUrls": [
-          image, image, image
+          image
       ],
       categories,
       ingredients,
