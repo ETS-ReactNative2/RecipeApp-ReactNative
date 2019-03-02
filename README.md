@@ -1,7 +1,6 @@
 React native RecipeApp
-![concept](/template.png)
 
-## :arrow_up: How to Setup/Run the Server
+## :arrow_forward: How to Setup/Run the Server
 
 **Step 1:** cd to the ./server folder :
 
@@ -15,5 +14,6 @@ React native RecipeApp
 
 **Step 2:** Install the Application with `npm install` 
 
-**Step 3:** Install the client app on an android device using `react-native run-android`  
+**Step 3:** Rename .env.example to .env and define the url for the server
 
+**Step 4:** Install the client app on an android device using `react-native run-android`
