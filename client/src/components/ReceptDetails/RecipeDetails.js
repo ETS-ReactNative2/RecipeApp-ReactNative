@@ -34,10 +34,10 @@ const recipeDetails = (props) => {
                                 <Avatar
                                     rounded
                                     size="large"
-                                    source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
+                                    source={{uri: props.recipe.authorImage}}
                                 />
                                 <Text> Created by </Text>
-                                <Text style={styles.creatorName}>@user</Text>
+                                <Text style={styles.creatorName}>@{props.recipe.author}</Text>
                                 <Icon style={styles.creatorContainerArrow} name="chevron-right" size={20}/>
                             </View>
                             <View style={styles.dividerContainer}>
@@ -47,22 +47,21 @@ const recipeDetails = (props) => {
                             <View style={styles.proteinsContainer}>
                                 <View style={styles.singleProteinContainer}>
                                     <Text style={styles.proteinText}>Protein</Text>
-                                    <Text style={styles.proteinValue}>105 g</Text>
+                                    <Text style={styles.proteinValue}>{props.recipe.nutrition.protein} g</Text>
                                 </View>
                                 <View style={styles.singleProteinContainer}>
                                     <Text style={styles.proteinText}>Fat</Text>
-                                    <Text style={styles.proteinValue}>40 g</Text>
+                                    <Text style={styles.proteinValue}>{props.recipe.nutrition.fat} g</Text>
                                 </View>
                                 <View style={styles.singleProteinContainer}>
                                     <Text style={styles.proteinText}>Net Carbs</Text>
-                                    <Text style={styles.proteinValue}>60 g</Text>
+                                    <Text style={styles.proteinValue}>{props.recipe.nutrition.carbs} g</Text>
                                 </View>
                             </View>
                             <View style={styles.dividerContainer}>
                                 <Divider/>
                             </View>
                             <Text style={styles.subTitle}>Ingredients</Text>
-                            {/*<Text>{props.recipeDetails.text}</Text>*/}
                         </View>
                     </View>
                     <SideElementScrollView elements={props.recipe.ingredients}/>

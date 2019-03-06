@@ -8,7 +8,7 @@ const SideElement = (props) => {
             <Avatar
                 rounded
                 size="large"
-                source={{uri: 'https://i.imgur.com/Jj4UQXC.png'}}
+                source={{uri: props.image}}
             />
             <Text style={styles.titleText}>{props.name}</Text>
             <Text style={styles.bottomText}>{props.amount}</Text>
