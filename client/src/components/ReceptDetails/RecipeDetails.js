@@ -10,21 +10,22 @@ const recipeDetails = (props) => {
         <View style={{backgroundColor: "white"}}>
             <ScrollView>
                 <View>
+                    {console.log(props)}
                     <Image style={styles.image}
-                           source={{uri: "https://spoonacular.com/recipeImages/kale-pineapple-smoothie-837136.jpg"}}/>
+                           source={{uri: props.recipe.image}}/>
                 </View>
                 <View style={{alignItems: 'center'}}>
                     <View style={styles.bottomContainer}>
 
                         <View style={{flex: 1}}>
-                            <Text style={styles.title}>Melt In Your Mouth Kale Salad</Text>
+                            <Text style={styles.title}>{props.recipe.title}</Text>
                             <View style={styles.timeCalorieContainer}>
-                                <Text>30 min</Text>
+                                <Text>Ready in {props.recipe.readyInMinutes} minutes</Text>
                                 <Icon style={{paddingLeft: 5, paddingRight: 5}} name="circle" size={5}/>
-                                <Text>520 calories per serving</Text>
+                                <Text>{props.recipe.servings} servings</Text>
                             </View>
                             <View style={styles.tagsContainer}>
-                                <Tags tags={["tag1", "tag2"]}/>
+                                <Tags tags={props.recipe.categories}/>
                             </View>
                             <View style={styles.dividerContainer}>
                                 <Divider/>
@@ -64,24 +65,7 @@ const recipeDetails = (props) => {
                             {/*<Text>{props.recipeDetails.text}</Text>*/}
                         </View>
                     </View>
-                    <SideElementScrollView elements={{
-                        "Black pepper": "2 tsk",
-                        "Fries": "1 kg",
-                        "Salt": "1 tsk",
-                        "Sugar": "1 mg",
-                        "Ham": "4 tsk"
-                    }}/>
-                    <View style={styles.bottomContainer}>
-                        <Text style={styles.subTitle}>Kitchen tools</Text>
-                    </View>
-                    <SideElementScrollView elements={{
-                        "Black pepper": "2 tsk",
-                        "Fries": "1 kg",
-                        "Salt": "1 tsk",
-                        "Sugar": "1 mg",
-                        "Ham": "4 tsk"
-                    }}/>
-
+                    <SideElementScrollView elements={props.recipe.ingredients}/>
                 </View>
             </ScrollView>
         </View>

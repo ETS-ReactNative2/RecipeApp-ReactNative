@@ -3,18 +3,18 @@ import {StyleSheet, View, Text, ImageBackground, TouchableOpacity} from "react-n
 import Tags from "../../../components/Tags/Tags"
 const FeedTile = (props) => {
     return (
-        <TouchableOpacity onPress={props.onClick}>
+        <TouchableOpacity onPress={()=> props.onClick(props.data)}>
             <View style={styles.container}>
                 <ImageBackground
-                    source={{uri: props.image}}
+                    source={{uri: props.data.image}}
                     style={{
                         width: '100%',
                         height: '100%'
                     }}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>{props.title}</Text>
+                        <Text style={styles.titleText}>{props.data.title}</Text>
                     </View>
-                    <Tags tags={props.tags}/>
+                    <Tags tags={props.data.categories}/>
                 </ImageBackground>
             </View>
         </TouchableOpacity>

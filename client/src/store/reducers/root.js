@@ -12,7 +12,7 @@ const initialState = {
     counter: 0,
     recipes: [],
     recipesLoaded: false,
-    recipeSelected: "smnt",
+    recipeSelected: {},
     shoppingList:
         [{name: "xxx", archived: false}, {name: "archived", archived: true}, {name: "xxx", archived: false}]
 };
@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
         case SELECT_RECIPE: {
             return {
                 ...state,
-                recipeSelected: action.data
+                recipeSelected: action.recipeSelected
             }
         }
         case ADD_SHOPPING_LIST_ITEM: {

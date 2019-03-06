@@ -27,8 +27,8 @@ class Feed extends Component {
         this.props.onUpdateRecipes(response);
     };
 
-    onTileClickHandler = (event) => {
-        this.props.onSelectRecipe(event.target);
+    onTileClickHandler = (object) => {
+        this.props.onSelectRecipe(object);
         this.props.navigation.navigate('RecipeDetails')
     };
 

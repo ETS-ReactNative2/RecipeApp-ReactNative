@@ -12,9 +12,7 @@ const feedTileFlatList = (props) => {
             renderItem={({item}) =>
                 <FeedTile
                     onClick={props.onClick}
-                    title={item.title}
-                    image={item.image}
-                    tags={item.categories}
+                    data={item}
                 />
             }
         />
