@@ -10,21 +10,22 @@ const recipeDetails = (props) => {
         <View style={{backgroundColor: "white"}}>
             <ScrollView>
                 <View>
+                    {console.log(props)}
                     <Image style={styles.image}
-                           source={{uri: "https://spoonacular.com/recipeImages/kale-pineapple-smoothie-837136.jpg"}}/>
+                           source={{uri: props.recipe.image}}/>
                 </View>
                 <View style={{alignItems: 'center'}}>
                     <View style={styles.bottomContainer}>
 
                         <View style={{flex: 1}}>
-                            <Text style={styles.title}>Melt In Your Mouth Kale Salad</Text>
+                            <Text style={styles.title}>{props.recipe.title}</Text>
                             <View style={styles.timeCalorieContainer}>
-                                <Text>30 min</Text>
+                                <Text>Ready in {props.recipe.readyInMinutes} minutes</Text>
                                 <Icon style={{paddingLeft: 5, paddingRight: 5}} name="circle" size={5}/>
-                                <Text>520 calories per serving</Text>
+                                <Text>{props.recipe.servings} servings</Text>
                             </View>
                             <View style={styles.tagsContainer}>
-                                <Tags tags={["tag1", "tag2"]}/>
+                                <Tags tags={props.recipe.categories}/>
                             </View>
                             <View style={styles.dividerContainer}>
                                 <Divider/>
@@ -33,10 +34,10 @@ const recipeDetails = (props) => {
                                 <Avatar
                                     rounded
                                     size="large"
-                                    source={{uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
+                                    source={{uri: props.recipe.authorImage}}
                                 />
                                 <Text> Created by </Text>
-                                <Text style={styles.creatorName}>@user</Text>
+                                <Text style={styles.creatorName}>@{props.recipe.author}</Text>
                                 <Icon style={styles.creatorContainerArrow} name="chevron-right" size={20}/>
                             </View>
                             <View style={styles.dividerContainer}>
@@ -46,42 +47,24 @@ const recipeDetails = (props) => {
                             <View style={styles.proteinsContainer}>
                                 <View style={styles.singleProteinContainer}>
                                     <Text style={styles.proteinText}>Protein</Text>
-                                    <Text style={styles.proteinValue}>105 g</Text>
+                                    <Text style={styles.proteinValue}>{props.recipe.nutrition.protein} g</Text>
                                 </View>
                                 <View style={styles.singleProteinContainer}>
                                     <Text style={styles.proteinText}>Fat</Text>
-                                    <Text style={styles.proteinValue}>40 g</Text>
+                                    <Text style={styles.proteinValue}>{props.recipe.nutrition.fat} g</Text>
                                 </View>
                                 <View style={styles.singleProteinContainer}>
                                     <Text style={styles.proteinText}>Net Carbs</Text>
-                                    <Text style={styles.proteinValue}>60 g</Text>
+                                    <Text style={styles.proteinValue}>{props.recipe.nutrition.carbs} g</Text>
                                 </View>
                             </View>
                             <View style={styles.dividerContainer}>
                                 <Divider/>
                             </View>
                             <Text style={styles.subTitle}>Ingredients</Text>
-                            {/*<Text>{props.recipeDetails.text}</Text>*/}
                         </View>
                     </View>
-                    <SideElementScrollView elements={{
-                        "Black pepper": "2 tsk",
-                        "Fries": "1 kg",
-                        "Salt": "1 tsk",
-                        "Sugar": "1 mg",
-                        "Ham": "4 tsk"
-                    }}/>
-                    <View style={styles.bottomContainer}>
-                        <Text style={styles.subTitle}>Kitchen tools</Text>
-                    </View>
-                    <SideElementScrollView elements={{
-                        "Black pepper": "2 tsk",
-                        "Fries": "1 kg",
-                        "Salt": "1 tsk",
-                        "Sugar": "1 mg",
-                        "Ham": "4 tsk"
-                    }}/>
-
+                    <SideElementScrollView elements={props.recipe.ingredients}/>
                 </View>
             </ScrollView>
         </View>

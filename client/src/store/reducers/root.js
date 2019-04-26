@@ -1,11 +1,20 @@
-import {ADD_NUMBER, REMOVE_NUMBER, UPDATE_RECIPES, SELECT_RECIPE} from "../actions/actionTypes";
+import {
+    ADD_NUMBER,
+    REMOVE_NUMBER,
+    UPDATE_RECIPES,
+    SELECT_RECIPE,
+    ADD_SHOPPING_LIST_ITEM,
+    REMOVE_SHOPPING_LIST_ITEM,
+    ARCHIVE_SHOPPING_LIST_ITEM
+} from "../actions/actionTypes";
 
 const initialState = {
     counter: 0,
     recipes: [],
     recipesLoaded: false,
-    recipeSelected: "smnt"
-
+    recipeSelected: {},
+    shoppingList:
+        [{name: "xxx", archived: false}, {name: "archived", archived: true}, {name: "xxx", archived: false}]
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,7 +42,35 @@ const reducer = (state = initialState, action) => {
         case SELECT_RECIPE: {
             return {
                 ...state,
-                recipeSelected: action.data
+                recipeSelected: action.recipeSelected
+            }
+        }
+        case ADD_SHOPPING_LIST_ITEM: {
+            return {
+                ...state,
+                shoppingList: [...state.shoppingList, {name: action.data, archived: false}]
+            }
+        }
+        case REMOVE_SHOPPING_LIST_ITEM: {
+            return {
+                ...state,
+                shoppingList: action.item
+            }
+        }
+        case ARCHIVE_SHOPPING_LIST_ITEM: {
+            console.log(action.shoppingList);
+            return {
+                ...state,
+                shoppingList: state.shoppingList.map((item, index) => {
+                    if (index !== state.shoppingList.indexOf(action.shoppingList)) {
+                        return item
+                    }
+
+                    return {
+                        ...item,
+                        archived: !action.shoppingList.archived
+                    }
+                })
             }
         }
 

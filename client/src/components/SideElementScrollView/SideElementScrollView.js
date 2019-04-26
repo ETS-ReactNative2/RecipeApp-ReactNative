@@ -3,16 +3,16 @@ import {ScrollView, StyleSheet} from "react-native";
 import SideElement from "./SideElement/SideElement"
 
 const SideElementScrollView = (props) => {
-
-    const myElements =Object.keys(props.elements).map(function(key) {
-        return <SideElement key={key} amount={props.elements[key]} name={[key]}/>
+    const myElements = Object.keys(props.elements).map(function(key) {
+        return <SideElement 
+            amount={props.elements[key].amount + " " + props.elements[key].unit}
+            key={[key]}
+            name={props.elements[key].name}
+            image={props.elements[key].image}
+        />
     });
 
-
-        //<SideElement name={props.element} />;
-
     return (
-
         <ScrollView horizontal={true} style={styles.container}>
             {myElements}
         </ScrollView>

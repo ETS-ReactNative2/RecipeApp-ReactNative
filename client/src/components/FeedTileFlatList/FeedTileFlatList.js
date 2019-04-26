@@ -8,12 +8,11 @@ const feedTileFlatList = (props) => {
         <FlatList
             style={styles.container}
             data={props.recipe}
+            keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) =>
                 <FeedTile
                     onClick={props.onClick}
-                    title={item.title}
-                    image={"https://spoonacular.com/recipeImages/" + item.image}
-                    key={item.id}
+                    data={item}
                 />
             }
         />

@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "json-server recipes.js"
+    "start": "json-server recipes.js --host 127.0.0.1"
   },
   "author": "",
   "license": "ISC"

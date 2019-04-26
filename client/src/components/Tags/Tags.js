@@ -2,9 +2,9 @@ import React from "react";
 import {StyleSheet, View} from "react-native";
 import Tag from "./Tag/Tag";
 
-const Tags = (props) => {
-    const myTags = props.tags.map(function (tag) {
-        return <Tag tag={tag} />
+const Tags = (props) => {    
+    const myTags = props.tags.map(function (tag, index) {
+        return <Tag tag={tag} key={index} />
     });
     return (
         <View style={styles.tagsContainer}>

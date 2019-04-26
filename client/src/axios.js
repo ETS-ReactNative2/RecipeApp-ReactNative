@@ -1,10 +1,9 @@
 import axios from "axios";
+import Config from 'react-native-config';
 
 const instance = axios.create({
-    baseURL : "https://webknox-recipes.p.rapidapi.com"
+    baseURL : Config.SERVER_API_URL
 });
-
-instance.defaults.headers.common["X-RapidAPI-Key"] = "";
 instance.defaults.headers.post["Content-Type"] = "application/json";
 
 export default instance;

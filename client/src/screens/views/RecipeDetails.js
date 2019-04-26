@@ -7,16 +7,9 @@ class RecipeDetails extends React.Component {
         super(props);
     }
 
-    getCurrentRecipe = (props) => {
-        console.log(this.props.recipeSelected);
-        return this.props.recipes[this.props.recipeSelected];
-    };
-
-
-
     render() {
         return (
-            <RecipeDetailsComponent/>
+            <RecipeDetailsComponent recipe={this.props.recipeSelected}/>
         )
     }
 }

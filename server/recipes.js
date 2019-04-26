@@ -3,13 +3,18 @@
   {
     "id": 241,
     "title": "voluptatem dolorem rerum",
+    "author": "reiciendis nobis ex",
+    "authorImage": "https://s3.amazonaws.com/uifaces/faces/twitter/djsherman/128.jpg",
     "readyInMinutes": 24,
     "servings": 7,
-    "image": "http://lorempixel.com/640/480/food",
+    "nutrition": {
+      "protein": 352,
+      "fat": 325,
+      "carbs": 660
+    },
+    "image": "http://lorempixel.com/640/480/food?rnd=10",
     "imageUrls": [
-      "http://lorempixel.com/640/480/food",
-      "http://lorempixel.com/640/480/food",
-      "http://lorempixel.com/640/480/food"
+      "http://lorempixel.com/640/480/food?rnd=10"
     ],
     "categories": [
       "Sides",
@@ -23,10 +28,13 @@
         "unit": "ounces",
         "unitShort": "oz",
         "name": "voluptas"
+        "image": http://lorempixel.com/640/480/food?rnd=10
       }
+      ...
     ],
     "text": "Excepturi assumenda eos totam officia. Adipisci animi nisi aut et dicta. Explicabo hic voluptatibus excepturi ut non assumenda velit dolor.\n \rVoluptas et nesciunt dolores aut beatae possimus voluptatibus accusantium tempore. Ratione et vel non. Ad laboriosam ducimus. Voluptatibus tempora sint facere et sit repellat. Quos quis facere fugit vel perspiciatis delectus. Et non nesciunt error animi.\n \rLabore in deserunt ex aperiam dolores voluptate at. Vel molestiae dolorem. Error molestiae aliquam laboriosam aut cumque recusandae quia ut tenetur."
   },
+  ...
 */
 
 
@@ -57,7 +65,8 @@ function generateIngredients(){
       "amount": randomNumber(6),
       "unit": unit.long,
       "unitShort": unit.short,
-      "name": faker.lorem.word()
+      "name": faker.lorem.word(),
+      "image": faker.image.food() + "?rnd=" + randomNumber(1000)
     });
   }
   return ingredients;
@@ -70,20 +79,32 @@ function generateRecipes () {
   for (let id = 0; id < 500; id++) {
     
     let title = faker.lorem.words();
-    let readyInMinutes = randomNumber(120);
+    let readyInMinutes = Math.ceil(randomNumber(120)/5)*5; 
     let servings = randomNumber(16);
-    let image = faker.image.food();
-    let categories = (defaultCategories.sort(() => 0.5 - Math.random())).slice(0, randomNumber(6));
+    let image = faker.image.food() + '?rnd=' + randomNumber(1000);
+    let categories = (defaultCategories.sort(() => 0.5 - Math.random())).slice(0, randomNumber(4));
     let ingredients = generateIngredients();
     let text = faker.lorem.paragraphs();
+    let protein = Math.ceil(randomNumber(1000)/5)*5
+    let fat = Math.ceil(randomNumber(1000)/5)*5
+    let carbs = Math.ceil(randomNumber(1000)/5)*5
+    let author = faker.lorem.words();
+    let authorImage = faker.image.avatar();
     recipes.push({
       "id": id,
       "title": title,
+      "author": author,
+      "authorImage": authorImage,
       "readyInMinutes": readyInMinutes,
       "servings": servings,
+      "nutrition": {
+        "protein": protein,
+        "fat": fat,
+        "carbs": carbs
+      },
       "image": image,
       "imageUrls": [
-          image, image, image
+          image
       ],
       categories,
       ingredients,
